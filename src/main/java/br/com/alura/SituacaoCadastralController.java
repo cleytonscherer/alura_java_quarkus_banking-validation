@@ -1,5 +1,6 @@
 package br.com.alura;
 
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -14,13 +15,14 @@ public class SituacaoCadastralController {
     }
 
     @POST
+    @Transactional
     public void cadastrar(Agencia agencia) {
-        this.situacaoCadastralRepository.cadastrar(agencia);
+        this.situacaoCadastralRepository.persist(agencia);
     }
 
     @GET
     @Path("{cnpj}")
     public Agencia buscarPorCnpj(String cnpj) {
-        return this.situacaoCadastralRepository.buscarPorId(cnpj);
+        return this.situacaoCadastralRepository.findByCnpj(cnpj);
     }
 }

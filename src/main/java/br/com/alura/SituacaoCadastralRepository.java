@@ -1,20 +1,12 @@
 package br.com.alura;
 
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @ApplicationScoped
-public class SituacaoCadastralRepository {
+public class SituacaoCadastralRepository implements PanacheRepository<Agencia> {
 
-    private final List<Agencia> agencias = new ArrayList<>();
-
-    public void cadastrar(Agencia agencia) {
-        agencias.add(agencia);
-    }
-
-    public Agencia buscarPorId(String cnpj) {
-        return agencias.stream().filter(agencia -> agencia.getCnpj().equals(cnpj)).toList().get(0);
+    public Agencia findByCnpj(String cnpj) {
+        return find("cnpj", cnpj).firstResult();
     }
 }

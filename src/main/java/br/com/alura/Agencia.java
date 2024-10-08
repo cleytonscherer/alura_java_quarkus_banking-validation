@@ -1,22 +1,35 @@
 package br.com.alura;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Agencia {
 
-    Agencia(String nome, String razaoSocial, String cnpj, String situacaoCadastral) {
-        this.id = 1L;
+    Agencia() {
+
+    }
+
+    Agencia(Integer id, String nome, String razaoSocial, String cnpj, String situacaoCadastral) {
+        this.id = id;
         this.nome = nome;
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
-        this.situacaoCadastral = SituacaoCadastral.valueOf(situacaoCadastral);
+        this.situacaoCadastral = situacaoCadastral;
     }
 
-    private Long id;
-    private final String nome;
-    private final String razaoSocial;
-    private final String cnpj;
-    private final SituacaoCadastral situacaoCadastral;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String nome;
 
-    public Long getId() {
+    @Column(name = "razao_social")
+    private String razaoSocial;
+    private String cnpj;
+
+    @Column(name = "situacao_cadastral")
+    private String situacaoCadastral;
+
+    public Integer getId() {
         return id;
     }
 
@@ -32,7 +45,7 @@ public class Agencia {
         return cnpj;
     }
 
-    public SituacaoCadastral getSituacaoCadastral() {
+    public String getSituacaoCadastral() {
         return situacaoCadastral;
     }
 }
