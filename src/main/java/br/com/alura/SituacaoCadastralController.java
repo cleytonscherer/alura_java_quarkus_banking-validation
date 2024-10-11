@@ -6,6 +6,8 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import org.jboss.resteasy.reactive.RestResponse;
 
+import java.util.List;
+
 @Path("/situacao-cadastral")
 public class SituacaoCadastralController {
 
@@ -19,6 +21,11 @@ public class SituacaoCadastralController {
     @Transactional
     public void cadastrar(Agencia agencia) {
         this.situacaoCadastralRepository.persist(agencia);
+    }
+
+    @GET
+    public List<Agencia> buscarTodos() {
+        return this.situacaoCadastralRepository.findAll().stream().toList();
     }
 
     @GET
