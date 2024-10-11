@@ -4,6 +4,7 @@ import jakarta.transaction.Transactional;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import org.jboss.resteasy.reactive.RestResponse;
 
 @Path("/situacao-cadastral")
 public class SituacaoCadastralController {
@@ -22,7 +23,10 @@ public class SituacaoCadastralController {
 
     @GET
     @Path("{cnpj}")
-    public Agencia buscarPorCnpj(String cnpj) {
-        return this.situacaoCadastralRepository.findByCnpj(cnpj);
+    public RestResponse<Agencia> buscarPorCnpj(String cnpj) {
+        Agencia agencia = this.situacaoCadastralRepository.findByCnpj(cnpj);
+        if (agencia != null) {
+            return RestResponse.ok(agencia);
+        } throw new RuntimeException();
     }
 }
