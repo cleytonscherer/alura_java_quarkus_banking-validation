@@ -34,6 +34,6 @@ public class SituacaoCadastralController {
         Agencia agencia = this.situacaoCadastralRepository.findByCnpj(cnpj);
         if (agencia != null) {
             return RestResponse.ok(agencia);
-        } throw new RuntimeException();
+        } return RestResponse.noContent();
     }
 }
