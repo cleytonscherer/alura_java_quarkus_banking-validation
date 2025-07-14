@@ -48,4 +48,16 @@ public class Agencia {
     public String getSituacaoCadastral() {
         return situacaoCadastral;
     }
+
+    @Override
+    public String toString() {
+        return "\nAgencia" +
+                "\n{" +
+                "\n\tid=" + id +
+                ",\n\tnome='" + nome + '\'' +
+                ",\n\trazaoSocial='" + razaoSocial + '\'' +
+                ",\n\tcnpj='" + cnpj + '\'' +
+                ",\n\tsituacaoCadastral='" + situacaoCadastral + '\'' +
+                "\n}";
+    }
 }

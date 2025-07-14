@@ -69,3 +69,6 @@ docker exec kafka-alura kafka-topics --create --bootstrap-server localhost:9092 
 
 ## listando os topicos
 docker exec kafka-alura kafka-topics --list --bootstrap-server localhost:9092
+
+## executando o container postgres interativamente
+docker exec -it condescending_bose bash
